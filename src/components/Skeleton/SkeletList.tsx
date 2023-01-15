@@ -11,7 +11,7 @@ export const SkeletList:FC<SkeletListType> = ({amount}) => {
 
     const skeletItem = Array.from(new Array(amount)).map((item, index) => {
         return (
-            <Grid key={index} item xs={3} sm={4} md={4}>
+            <Grid key={index} item xs={12} sm={4} md={4}>
                 <Skeleton variant="rectangular" height={550}/>
             </Grid>
         )
