@@ -30,7 +30,7 @@ const Recipe = memo(() => {
             dispatch(setRecipeLoadingAC(false));
             dispatch(setRecipeAC(response.meals[0]));
         }).catch(() => {
-            navigate(`/`)
+            navigate(-1)
         })
     }, [dispatch, id, navigate])
 

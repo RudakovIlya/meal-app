@@ -1,5 +1,5 @@
 import React, {memo, useEffect} from 'react';
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks/hooks";
 import {setCategory, setIsLoading} from "../../redux/reducers/categoryReducer";
 import {getFilteredCategory} from "../../api/api";
@@ -11,15 +11,23 @@ export const CategoryList = memo(() => {
 
     const {name} = useParams<{ name: string }>();
 
+    const navigate = useNavigate();
+
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(setIsLoading(true))
         getFilteredCategory(name).then((response) => {
-            dispatch(setCategory(response.meals))
-            dispatch(setIsLoading(false))
+            if (response.meals) {
+                dispatch(setCategory(response.meals ? response.meals : []))
+                dispatch(setIsLoading(false))
+            } else {
+                return Promise.reject()
+            }
+        }).catch(() => {
+            navigate(-1)
         })
-    }, [name, dispatch]);
+    }, [name, dispatch, navigate]);
 
     const {category, isLoading} = useAppSelector(state => state.category);
 

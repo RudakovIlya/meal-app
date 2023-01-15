@@ -1,5 +1,6 @@
 import {CatalogType} from "../reducers/catalogReducer";
 
 export const setVisibleCatalogItems = (catalog: CatalogType[], filter: string): CatalogType[] => {
-    return catalog.filter(c => c.strCategory.toLowerCase().includes(filter.toLowerCase()))
+    const filteredItems = catalog.filter(c => c.strCategory.toLowerCase().includes(filter.toLowerCase()))
+    return filteredItems.length ? filteredItems : ([] as CatalogType[])
 }
