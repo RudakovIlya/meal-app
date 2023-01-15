@@ -1,0 +1,2 @@
+body,html{height:100%}body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:Roboto,sans-serif;margin:0}#root{display:flex;flex-direction:column;min-height:100%}.basket{-webkit-animation:show .5s ease;animation:show .5s ease;height:auto;left:50%;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);z-index:10}.background,.basket{position:fixed;width:100%}.background{background-color:#0000006c;height:100%;left:0;top:0}
+/*# sourceMappingURL=main.cf6a730e.css.map*/
