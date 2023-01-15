@@ -96,13 +96,14 @@ const Recipe = memo(() => {
                                     position: 'relative',
                                     padding: '0px 0px 42.25% 0px'
                                 }}>
-                                    <iframe frameBorder={'none'} style={{
+                                    <iframe style={{
                                         position: 'absolute',
                                         width: '100%',
                                         height: '100%',
                                         top: 0,
                                         left: 0,
-                                        objectFit: 'cover'
+                                        objectFit: 'cover',
+                                        border: 'none'
                                     }}
                                             title={recipe?.idMeal}
                                             allowFullScreen
