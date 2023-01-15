@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks/hooks";
-import {setCategory} from "../../redux/reducers/categoryReducer";
+import {setCategory, setIsLoading} from "../../redux/reducers/categoryReducer";
 import {getFilteredCategory} from "../../api/api";
 import {List} from "../../components/List/List";
 import {CardItem} from "../../components/Card/CardItem";
-import {Skelet} from "../../components/Skeleton/Skelet";
+import {SkeletList} from "../../components/Skeleton/SkeletList";
 
 export const CategoryList = () => {
 
@@ -14,15 +14,14 @@ export const CategoryList = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
+        dispatch(setIsLoading(true))
         getFilteredCategory(name).then((response) => {
             dispatch(setCategory(response.meals))
+            dispatch(setIsLoading(false))
         })
-        return () => {
-            dispatch(setCategory([]))
-        }
     }, [name, dispatch]);
 
-    const category = useAppSelector(state => state.category);
+    const {category, isLoading} = useAppSelector(state => state.category);
 
     const categoryItems = category.map((categoryItem) => {
         return (
@@ -33,7 +32,7 @@ export const CategoryList = () => {
 
     return (
         <List>
-            {category.length ? categoryItems : <Skelet/>}
+            {!isLoading ? categoryItems : <SkeletList amount={12}/>}
         </List>
     );
 };

@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {FC} from 'react';
 import Grid from "@mui/material/Grid";
 import Skeleton from "@mui/material/Skeleton";
 
-export const Skelet = () => {
+type SkeletListType = {
+    amount?: number
+}
 
-    const skeletItem = Array.from(new Array(12)).map((item, index) => {
+
+export const SkeletList:FC<SkeletListType> = ({amount}) => {
+
+    const skeletItem = Array.from(new Array(amount)).map((item, index) => {
         return (
             <Grid key={index} item xs={3} sm={4} md={4}>
                 <Skeleton variant="rectangular" height={550}/>

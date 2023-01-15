@@ -11,14 +11,38 @@ export const setCategory = (category: CategoryType[]) => {
     } as const
 }
 
-export type CategoriesAllTypes = ReturnType<typeof setCategory>
+export const setIsLoading = (isLoading: boolean) => {
+    return {
+        type: '@@category/SET_IS_LOADING',
+        payload: isLoading
+    } as const
+}
 
-const initialState: CategoryType[] = [];
+export type CategoriesAllActionsTypes = ReturnType<typeof setCategory> | ReturnType<typeof setIsLoading>
 
-export const categoryReducer = (state: CategoryType[] = initialState, action: CategoriesAllTypes): CategoryType[] => {
+type CategoryStateType = {
+    isLoading: boolean
+    category: CategoryType[]
+}
+
+const initialState: CategoryStateType = {
+    category: [],
+    isLoading: false
+};
+
+export const categoryReducer = (state: CategoryStateType = initialState, action: CategoriesAllActionsTypes): CategoryStateType => {
     switch (action.type) {
         case "@@category/SET_CATEGORIES": {
-            return [...action.payload]
+            return {
+                ...state,
+                category: action.payload
+            }
+        }
+        case "@@category/SET_IS_LOADING": {
+            return {
+                ...state,
+                isLoading: action.payload
+            }
         }
         default: {
             return state

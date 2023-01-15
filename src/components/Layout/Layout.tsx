@@ -22,6 +22,7 @@ export const Layout = () => {
             <Container style={{flex: "1", paddingTop: "100px"}}>
                 {pathname === '/' ? <Search/> :
                     <Button
+                        sx={{mb: 2}}
                         variant={'outlined'}
                         style={{color: "#000000", border: "1px solid #000000"}}
                         onClick={goBack}>GO BACK</Button>}

@@ -13,11 +13,12 @@ type CardItemType = {
     image?: string
     link?: string
     btnText?: string
+    description?: string
 }
 
 export const CardItem: FC<CardItemType> = memo((props) => {
 
-    const {title, image, link, btnText} = props
+    const {title, image, link, btnText, description} = props
 
     return (
         <Grid item xs={4} sm={4} md={4} height={"100%"}>
@@ -27,6 +28,9 @@ export const CardItem: FC<CardItemType> = memo((props) => {
                     <Typography gutterBottom variant="h5" component="div">
                         {title}
                     </Typography>
+                    {description && <Typography gutterBottom variant="body1" component="p">
+                        {`${description.slice(0, 60)}...`}
+                    </Typography>}
                 </CardContent>
                 <CardActions/>
                 <div

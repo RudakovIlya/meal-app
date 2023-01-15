@@ -14,14 +14,38 @@ export const setCatalogCategories = (catalog: ResponseType<CatalogType>) => {
     } as const
 }
 
-export type CatalogCategoriesAllTypes = ReturnType<typeof setCatalogCategories>
+export const setIsLoading = (isLoading: boolean) => {
+    return {
+        type: '@@catalog/SET_IS_LOADING',
+        payload: isLoading
+    } as const
+}
 
-const initialState: CatalogType[] = [];
+export type CatalogCategoriesAllTypes = ReturnType<typeof setCatalogCategories> | ReturnType<typeof setIsLoading>
 
-export const catalogReducer = (state: CatalogType[] = initialState, action: CatalogCategoriesAllTypes): CatalogType[] => {
+type CatalogStateType = {
+    catalog: CatalogType[],
+    isLoading: boolean
+}
+
+const initialState: CatalogStateType = {
+    catalog: [],
+    isLoading: false
+};
+
+export const catalogReducer = (state: CatalogStateType = initialState, action: CatalogCategoriesAllTypes): CatalogStateType => {
     switch (action.type) {
         case "@@catalog/SET_CATALOG_CATEGORIES": {
-            return [...action.payload]
+            return {
+                ...state,
+                catalog: action.payload
+            }
+        }
+        case "@@catalog/SET_IS_LOADING": {
+            return {
+                ...state,
+                isLoading: action.payload
+            }
         }
         default: {
             return state
