@@ -6,7 +6,6 @@ import Recipe from "./pages/Pecipe/Recipe";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 export const App = () => {
-
     return (
         <>
             <Routes>

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent} from 'react';
+import React, {ChangeEvent, FC, KeyboardEvent} from 'react';
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -8,7 +8,11 @@ import FormControl from "@mui/material/FormControl";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks/hooks";
 import {changeSearchValue} from "../../redux/reducers/searchReducer";
 
-export const Search = () => {
+type SearchPropsType = {
+    handleSearch: (str: string) => void
+}
+
+export const Search: FC<SearchPropsType> = ({handleSearch}) => {
 
     const dispatch = useAppDispatch();
 
@@ -26,7 +30,7 @@ export const Search = () => {
     }
 
     const onHandleSubmit = () => {
-
+        handleSearch(inputSearch)
     }
 
     return (

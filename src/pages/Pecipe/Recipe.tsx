@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../redux/hooks/hooks";
 import {SkeletList} from "../../components/Skeleton/SkeletList";
 import {RecipeType, setRecipeAC, setRecipeLoadingAC} from "../../redux/reducers/recipeReducer";
 import {getMealByID} from "../../api/api";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Table from '@mui/material/Table';
@@ -20,6 +20,8 @@ const Recipe = memo(() => {
 
     const dispatch = useAppDispatch();
 
+    const navigate = useNavigate();
+
     const {isLoading, recipe} = useAppSelector(state => state.recipe)
 
     useEffect(() => {
@@ -27,8 +29,10 @@ const Recipe = memo(() => {
         getMealByID(id).then((response) => {
             dispatch(setRecipeLoadingAC(false));
             dispatch(setRecipeAC(response.meals[0]));
+        }).catch(() => {
+            navigate(`/`)
         })
-    }, [dispatch, id])
+    }, [dispatch, id, navigate])
 
     return (
         <>
