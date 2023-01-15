@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {memo, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks/hooks";
 import {setCategory, setIsLoading} from "../../redux/reducers/categoryReducer";
@@ -7,7 +7,7 @@ import {List} from "../../components/List/List";
 import {CardItem} from "../../components/Card/CardItem";
 import {SkeletList} from "../../components/Skeleton/SkeletList";
 
-export const CategoryList = () => {
+export const CategoryList = memo(() => {
 
     const {name} = useParams<{ name: string }>();
 
@@ -35,4 +35,4 @@ export const CategoryList = () => {
             {!isLoading ? categoryItems : <SkeletList amount={12}/>}
         </List>
     );
-};
+});

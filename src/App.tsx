@@ -3,6 +3,7 @@ import {Layout} from "./components/Layout/Layout";
 import {CategoryList} from "./pages/Category/CategoryList";
 import {CatalogList} from "./pages/Catalog/CatalogList";
 import Recipe from "./pages/Pecipe/Recipe";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 export const App = () => {
 
@@ -13,6 +14,7 @@ export const App = () => {
                     <Route path={'/'} element={<CatalogList/>}/>
                     <Route path={'/category/:name'} element={<CategoryList/>}/>
                     <Route path={'/meal/:id'} element={<Recipe/>}/>
+                    <Route path={'/*'} element={<ErrorPage/>}/>
                 </Route>
             </Routes>
         </>

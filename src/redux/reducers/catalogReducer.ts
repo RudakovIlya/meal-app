@@ -1,5 +1,3 @@
-import {ResponseType} from '../type'
-
 export type CatalogType = {
     idCategory: string
     strCategory: string
@@ -7,10 +5,10 @@ export type CatalogType = {
     strCategoryThumb: string
 }
 
-export const setCatalogCategories = (catalog: ResponseType<CatalogType>) => {
+export const setCatalogCategories = (catalog: CatalogType[]) => {
     return {
         type: '@@catalog/SET_CATALOG_CATEGORIES',
-        payload: catalog.categories
+        payload: catalog
     } as const
 }
 

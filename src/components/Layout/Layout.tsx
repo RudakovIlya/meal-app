@@ -4,7 +4,7 @@ import {Outlet, useLocation} from "react-router-dom";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import {useNavigate} from "react-router-dom";
-import Search from "../Search";
+import {ParticlesContainer} from "../ParticlesContainer/ParticlesContainer";
 
 export const Layout = () => {
 
@@ -18,9 +18,10 @@ export const Layout = () => {
 
     return (
         <>
+            <ParticlesContainer/>
             <Header/>
-            <Container style={{flex: "1", paddingTop: "100px"}}>
-                {pathname === '/' ? <Search/> :
+            <Container style={{flex: "1", paddingTop: "100px", zIndex: 100}}>
+                {pathname !== '/' &&
                     <Button
                         sx={{mb: 2}}
                         variant={'outlined'}

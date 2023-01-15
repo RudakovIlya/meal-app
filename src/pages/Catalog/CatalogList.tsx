@@ -5,24 +5,22 @@ import {CatalogType, setCatalogCategories, setIsLoading} from "../../redux/reduc
 import {CardItem} from "../../components/Card/CardItem";
 import {List} from "../../components/List/List";
 import {SkeletList} from "../../components/Skeleton/SkeletList";
+import Search from "../../components/Search/Search";
 
 export const CatalogList = () => {
 
     const dispatch = useAppDispatch();
 
-    const {catalog, isLoading} = useAppSelector(state => state.catalog)
+    const isLoading = useAppSelector(state => state.catalog.isLoading)
+    const catalog = useAppSelector(state => state.catalog.catalog)
 
     useEffect(() => {
         dispatch(setIsLoading(true))
         getAllCategories().then((response) => {
-            dispatch(setCatalogCategories(response))
+            dispatch(setCatalogCategories(response.categories))
             dispatch(setIsLoading(false))
         })
-        return () => {
-            dispatch(setCatalogCategories({categories: []}))
-        }
     }, [dispatch])
-
 
     const catalogItems = catalog.map((catalogItem: CatalogType) => {
         return (
@@ -37,8 +35,11 @@ export const CatalogList = () => {
     });
 
     return (
-        <List>
-            {!isLoading ? catalogItems : <SkeletList amount={12}/>}
-        </List>
+        <>
+            <Search/>
+            <List>
+                {!isLoading ? catalogItems : <SkeletList amount={12}/>}
+            </List>
+        </>
     );
 };
