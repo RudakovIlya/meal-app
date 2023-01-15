@@ -13,7 +13,7 @@ export const App = () => {
                     <Route path={'/'} element={<CatalogList/>}/>
                     <Route path={'/category/:name'} element={<CategoryList/>}/>
                     <Route path={'/meal/:id'} element={<Recipe/>}/>
-                    <Route path={'*'} element={<ErrorPage/>}/>
+                    <Route path={'/*'} element={<ErrorPage/>}/>
                 </Route>
             </Routes>
         </>
