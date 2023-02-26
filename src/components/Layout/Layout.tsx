@@ -1,9 +1,8 @@
 import {Header} from "../Header/Header";
 import {Footer} from "../Footer/Footer";
-import {Outlet, useLocation} from "react-router-dom";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import {useNavigate} from "react-router-dom";
 import {ParticlesContainer} from "../ParticlesContainer/ParticlesContainer";
 
 export const Layout = () => {

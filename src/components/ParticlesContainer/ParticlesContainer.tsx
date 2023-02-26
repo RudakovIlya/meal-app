@@ -122,7 +122,7 @@ export function ParticlesContainer() {
         }
     }
 
-    return <Particles options={options}
+    return <Particles style={{zIndex: 10}} options={options}
                       init={customInit}
     />;
 }

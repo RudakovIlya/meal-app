@@ -7,7 +7,7 @@ type SkeletListType = {
 }
 
 
-export const SkeletList:FC<SkeletListType> = ({amount}) => {
+export const SkeletList: FC<SkeletListType> = ({amount}) => {
 
     const skeletItem = Array.from(new Array(amount)).map((item, index) => {
         return (
